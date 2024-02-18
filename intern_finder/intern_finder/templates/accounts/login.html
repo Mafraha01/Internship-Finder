@@ -1,12 +1,16 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}
     {{ title }}
 {% endblock %}
 
 {% block content %}
-    <br>
-    <br>
-    <div class="col-lg-6 offset-3">
+    <section style="background-image: url('{% static 'office.jpg' %}');
+    /* Adjust background image properties */
+    background-size: cover; /* Cover the entire container */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-position: center;">
+    <div class="col-lg-6 offset-3" >
         <div class="box">
             <h3 class="heading">Login</h3>
             <p class="lead">Already have a account?</p>
@@ -46,16 +50,7 @@
             </form>
         </div>
     </div>
-    <br>
-    <br>
-    <section  class="section-divider" style="background-color: blue !important;">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <p>Find your new job now! </p>
-                    <p><a href="{% url 'jobs:jobs' %}" class="btn btn-outline-light">See our job offers </a></p>
-                </div>
-            </div>
-        </div>
-    </section>
+</section>
+    
+   
 {% endblock %}

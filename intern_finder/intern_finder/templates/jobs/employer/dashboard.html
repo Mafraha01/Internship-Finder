@@ -6,12 +6,16 @@
 
 {% block content %}
 
-    <section class="bg-light-gray" style="background-color: #62AFFC;">
+    <section class="bg-light-gray" style="background-image: url('{% static 'jobs4.jpg' %}');
+    /* Adjust background image properties */
+    background-size: cover; /* Cover the entire container */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-position: center;">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 mx-auto">
-                    <h1 class="heading">dashboard</h1>
-                    <p class="lead text-center">All created jobs</p>
+                <div class="col-lg-8 mx-auto" >
+                    <h1 class="heading" style="color:black;">dashboard</h1>
+                    <h2 class="text-center" style="color:red;">All created jobs</h2>
                 </div>
             </div>
         </div>

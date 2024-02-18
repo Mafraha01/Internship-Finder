@@ -6,7 +6,11 @@
 
 {% block content %}
 
-    <section class="job-form-section job-form-section--compressed" style="background-color: #F8CDFF;">
+    <section class="job-form-section job-form-section--compressed" style="background-image: url('{% static 'jobs4.jpg' %}');
+    /* Adjust background image properties */
+    background-size: cover; /* Cover the entire container */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-position: center;">
         <div class="container">
             <h4 class="heading">Search A job</h4>
             <form id="job-main-form" method="get" action="#" class="job-main-form">

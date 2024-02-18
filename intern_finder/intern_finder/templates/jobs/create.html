@@ -10,11 +10,15 @@
 
 {% block content %}
 
-    <section class="bg-light-gray" style="background-color: #62AFFC;">
+    <section class="bg-light-gray" style="background-image: url('{% static 'jobs4.jpg' %}');
+    /* Adjust background image properties */
+    background-size: cover; /* Cover the entire container */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-position: center;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto">
-                    <h1 class="heading">Add a new position</h1>
+                    <h1 class="heading" style="color:black">Add a new position</h1>
                 </div>
             </div>
         </div>
@@ -138,6 +142,7 @@
                                 <button type="submit" class="btn btn-success">
                                     publish
                                 </button>
+                                <a href="{% url 'jobs:employer-dashboard' %}" class="btn btn-danger">Close</a>
                             </div>
                         </div>
                     </form>
