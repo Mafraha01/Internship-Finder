@@ -40,7 +40,13 @@
             </div>
         </div>
     </div>
-    <section class="job-form-section" style="background-color: #62A8BE;">
+
+    <section class="job-form-section" style="background-image: url('{% static 'office.jpg' %}');
+            /* Adjust background image properties */
+            background-size: cover; /* Cover the entire container */
+            background-repeat: no-repeat; /* Do not repeat the image */
+            background-position: center;">
+
         <div class="col-lg-8 mx-auto">
             <h1 class="heading">Welcome to Intern Finder: Your Gateway to Exciting Opportunities! </h1>
         </div>
@@ -84,9 +90,13 @@
     
     
     
-    <section style="background-color: #0EB18B;">
+    <section style="background-image: url('{% static 'jobs.jpg' %}');
+    /* Adjust background image properties */
+    background-size: cover; /* Cover the entire container */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-position: center;">
         <div class="container">
-            <h3 class="heading" >Featured jobs</h3>
+            <h1 class="heading" >Featured jobs</h3>
             <div class="row featured align-items-stretch">
                 {% for job in jobs %}
                     <div class="col-lg-4 mb-5 mb-lg-0">

@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}
     Employer Register
 {% endblock %}
 
 {% block content %}
-    <section style="background-color: #52708E;">
+    <section style="background-image: url('{% static 'office.jpg' %}');
+    /* Adjust background image properties */
+    background-size: cover; /* Cover the entire container */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-position: center;">
     <div class="col-lg-6 offset-3">
         <div class="box">
             <h3 class="heading">create New account</h3>

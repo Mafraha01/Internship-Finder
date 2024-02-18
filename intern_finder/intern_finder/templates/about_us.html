@@ -1,13 +1,19 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block title %}About Us{% endblock %}
 
 {% block content %}
-    <section class="bg-light-gray" style="background-color: #6A7EFF;">
+    <section style="background-image: url('{% static 'office2.jpg' %}');
+    /* Adjust background image properties */
+    background-size: cover; /* Cover the entire container */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-position: center;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto">
-                    <h1 class="heading">About us</h1>
+                    <h1 class="heading" style="color:black;">About us</h1>
                 </div>
             </div>
         </div>
@@ -16,8 +22,6 @@
                 <section>
                     <h2 class="display-6">Introduction</h2>
                     <p class="lead">We are a group of Bachelor of Information and Communication Technology (BICT) students from the University of Kelaniya. Our team came together to develop the Intern Finder application as part of an assignment for our course.</p>
-                
-            
                 
                     <h2 class="display-6">Mission and Vision</h2>
                     <p class="lead">Our mission is to simplify the process of connecting students with internship opportunities, helping them kickstart their careers. We envision a future where every student has access to valuable internship experiences.</p>

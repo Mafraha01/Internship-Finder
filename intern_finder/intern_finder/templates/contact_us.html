@@ -1,13 +1,19 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block title %}Contact Us{% endblock %}
 
 {% block content %}
-    <section class="bg-light-gray text-center" style="background-color: #6A7EFF;">
+    <section class="bg-light-gray text-center" style="background-image: url('{% static 'office2.jpg' %}');
+    /* Adjust background image properties */
+    background-size: cover; /* Cover the entire container */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-position: center;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto">
-                    <h1 class="heading">Contact Us</h1>
+                    <h1 class="heading" style="color:black;">Contact Us</h1>
                 </div>
             </div>
         </div>
