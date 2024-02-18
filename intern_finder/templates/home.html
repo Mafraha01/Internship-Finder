@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Home
+{% endblock %}
+
+    {% block content %}
+    {% if request.user.role == 'employer' %}
+        <!-- Load the existing employer dashboard template -->
+        {% include 'home_employer.html' %}
+        
+    {% else %}
+    <div id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+         class="modal fade">
+        <div role="document" class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 id="exampleModalLabel" class="modal-title">Customer Login</h4>
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="post">
+                        <div class="form-group">
+                            <input id="email_modal" type="text" placeholder="email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input id="password_modal" type="password" placeholder="password" class="form-control">
+                        </div>
+                        <p class="text-center">
+                            <button type="button" class="btn btn-outline-white-primary"><i class="fa fa-sign-in"></i>
+                                Log in
+                            </button>
+                        </p>
+                    </form>
+                    <p class="text-center text-muted">Not registered yet?</p>
+                    <p class="text-center text-muted"><a href="client-register.html"><strong>Register now</strong></a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="job-form-section" style="background-color: #62A8BE;">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="heading">Welcome to Intern Finder: Your Gateway to Exciting Opportunities! </h1>
+        </div>
+        <div class="container">
+            <div class="row justify-content-center"> <!-- Center the content horizontally -->
+                <div class="col-lg-8"> <!-- Specify the column width -->
+                    <div class="job-form-box" style="background-color: #F1EEEE;"> <!-- Remove text-center class to align labels left -->
+                        <h2 class="heading text-center">Let's Find A Perfect Job</h2> <!-- Center the heading -->
+                        <form id="job-main-form" method="get" action="{% url 'jobs:searh' %}" class="job-main-form">
+                            <div class="controls">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6 mx-auto"> <!-- Center the content horizontally -->
+                                            <label for="profession" class="text-left">Job Role</label> <!-- Align label left -->
+                                            <input type="text" id="profession" name="position" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6 mx-auto"> <!-- Center the content horizontally -->
+                                            <label for="location" class="text-left">Place</label> <!-- Align label left -->
+                                            <input type="text" id="location" name="location" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6 mx-auto"> <!-- Center the content horizontally -->
+                                            <button type="submit" class="btn btn-outline-white-primary job-main-form__button">Find</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    
+    <section style="background-color: #0EB18B;">
+        <div class="container">
+            <h3 class="heading" >Featured jobs</h3>
+            <div class="row featured align-items-stretch">
+                {% for job in jobs %}
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div class="box-image-text bg-visible full-height">
+                            <div class="top">
+                                <a href="#">
+                                    <div class="bg"></div>
+                                </a>
+                            </div>
+                            <div class="content">
+                                <h5><a href="{% url 'jobs:jobs-detail' job.id %}">{{ job.title }}</a></h5>
+                                <p class="featured__details">
+                                    {{ job.location }}
+                                    {% if job.type == '1' %}
+                                        <span class="badge featured-badge badge-warning">Full time</span>
+                                    {% elif job.type == '2' %}
+                                        <span class="badge featured-badge badge-primary">Part time</span>
+                                    {% else %}
+                                        <span style="color: #ffffff;" class="badge featured-badge badge-success">Internship</span>
+                                    {% endif %}
+                                </p>
+                                <p>{{ job.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Edit Job
+{% endblock %}
+
+{% block content %}
+<section class="job-form-section" style="background-color: #FADDFF;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <a href="{% url 'jobs:employer-dashboard' %}" class="btn btn-danger float-right">Close</a>
+                        <h2 class="card-title mb-0 text-center">Edit Job</h2>
+                    </div>
+                    <div class="card-body" style="background-color: #F1EEEE;">
+                        <div style="max-width: 500px; margin: 0 auto;">
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="id_title"><strong>Job Title</strong></label>
+                                <input type="text" class="form-control" id="id_title" name="title" value="{{ form.title.value }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="id_filled"><strong>Position Filled</strong></label>
+                                <input type="checkbox" style="height:20px; width:20px;" class="form-control" id="id_filled" name="filled" {% if form.filled.value %}checked{% endif %}>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_last_date"><strong>Last Date</strong></label>
+                                <input type="date" class="form-control" id="id_last_date" name="last_date" value="{% if form.last_date.value %}{{ form.last_date.value|date:"Y-m-d" }}{% endif %}">
+                            </div>
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section style="background-color: #FADDFF;">
+</section>
+{% endblock %}
