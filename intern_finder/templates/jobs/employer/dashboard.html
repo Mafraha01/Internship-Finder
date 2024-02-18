@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Dashboard
+{% endblock %}
+
+{% block content %}
+
+    <section class="bg-light-gray" style="background-color: #62AFFC;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h1 class="heading">dashboard</h1>
+                    <p class="lead text-center">All created jobs</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-right mb-5"><a href="{% url 'jobs:employer-jobs-create' %}"
+                                                          class="btn btn-outline-white-primary">
+                    Add new position</a></div>
+
+                <div class="col-lg-12">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-client-dashboard">
+                            <thead>
+                            <tr>
+                                <th>Job title</th>
+                                <th>Position filled</th>
+                                <th>Date posted</th>
+                                <th>Date expiring</th>
+                                <th>Applicants</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for job in jobs %}
+
+                                <tr>
+                                    <th><a href="{% url 'jobs:jobs-detail' job.id %}">{{ job.title }}</a>
+                                    </th>
+                                    <td>
+                                        {% if job.filled %}
+                                            <span class="badge badge-success">Filled</span>
+                                        {% else %}
+                                            <span class="badge badge-secondary">Not Filled</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ job.created_at }}</td>
+                                    <td>{{ job.last_date }}</td>
+                                    <td>
+                                        <a href="{% url 'jobs:employer-dashboard-applicants' job.id %}"
+                                           class="btn btn-success">
+                                            {{ job.applicants.count }}
+                                            <span class="hidden-xs hidden-sm">Applicants</span>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'jobs:edit-job' job.id %}" class="btn btn-success">Edit</a>
+                                        <br>
+                                        {% if job.filled %}
+                                            <a href="{% url 'jobs:job-mark-filled' job.id %}"
+                                               class="btn btn-outline-white-secondary">
+                                                
+                                                <span class="hidden-xs hidden-sm">Filled</span>
+                                            </a><br>
+                                        {% else %}
+                                            <a href="{% url 'jobs:job-mark-filled' job.id %}"
+                                               class="btn btn-outline-white-secondary">
+                                                
+                                                <span class="hidden-xs hidden-sm">Mark as </span>filled
+                                            </a><br>
+                                        {% endif %}
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal{{ job.id }}">Delete</button>
+    
+                                        <!-- Confirmation Modal -->
+                                        <div class="modal fade" id="deleteModal{{ job.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Are you sure you want to delete "{{ job.title }}"?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                        <form action="{% url 'jobs:delete-job' job.id %}" method="post">
+                                                            {% csrf_token %}
+                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pages">
+                        <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-4 mb-4">
+                            <ul class="pagination">
+                                <li class="page-item"><a href="#" aria-label="Previous" class="page-link"><span
+                                        aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
+                                <li class="page-item active"><a href="#" class="page-link">1</a></li>
+                                <li class="page-item"><a href="#" class="page-link">2</a></li>
+                                <li class="page-item"><a href="#" class="page-link">3</a></li>
+                                <li class="page-item"><a href="#" class="page-link">4</a></li>
+                                <li class="page-item"><a href="#" aria-label="Next" class="page-link"><span
+                                        aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
