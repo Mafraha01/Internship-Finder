@@ -53,14 +53,14 @@
         <div class="container">
             <div class="row justify-content-center"> <!-- Center the content horizontally -->
                 <div class="col-lg-8"> <!-- Specify the column width -->
-                    <div class="job-form-box" style="background-color: #F1EEEE;"> <!-- Remove text-center class to align labels left -->
+                    <div class="job-form-box" style="background-color: rgba(255, 255, 255, 0.9);"> <!-- Remove text-center class to align labels left -->
                         <h2 class="heading text-center">Let's Find A Perfect Job</h2> <!-- Center the heading -->
                         <form id="job-main-form" method="get" action="{% url 'jobs:searh' %}" class="job-main-form">
                             <div class="controls">
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-6 mx-auto"> <!-- Center the content horizontally -->
-                                            <label for="profession" class="text-left">Job Role</label> <!-- Align label left -->
+                                            <label for="profession" class="text-left"><strong>Job Role</strong></label> <!-- Align label left -->
                                             <input type="text" id="profession" name="position" class="form-control">
                                         </div>
                                     </div>
@@ -68,7 +68,7 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-6 mx-auto"> <!-- Center the content horizontally -->
-                                            <label for="location" class="text-left">Place</label> <!-- Align label left -->
+                                            <label for="location" class="text-left"><strong>Place</strong></label> <!-- Align label left -->
                                             <input type="text" id="location" name="location" class="form-control">
                                         </div>
                                     </div>
@@ -94,15 +94,18 @@
     /* Adjust background image properties */
     background-size: cover; /* Cover the entire container */
     background-repeat: no-repeat; /* Do not repeat the image */
-    background-position: center;">
-        <div class="container">
-            <h1 class="heading" >Featured jobs</h3>
+    background-position: center;" >
+        <div class="container" >
+            <h1 class="heading" style="color:black;">Featured jobs</h3>
             <div class="row featured align-items-stretch">
                 {% for job in jobs %}
                     <div class="col-lg-4 mb-5 mb-lg-0">
                         <div class="box-image-text bg-visible full-height">
                             <div class="top">
-                                <a href="#">
+                                <a href="{% url 'jobs:jobs-detail' job.id %}">
+                                    <div class="image">
+                                        <img src="{% static 'project.jpg' %}" alt="" class="img-fluid">
+                                    </div>
                                     <div class="bg"></div>
                                 </a>
                             </div>

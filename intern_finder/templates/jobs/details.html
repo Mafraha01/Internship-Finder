@@ -7,7 +7,11 @@
 
 {% block content %}
 
-    <section class="bg-light-gray" style="background-color: #C8E4D9;">
+    <section class="bg-light-gray" style="background-image: url('{% static 'jobs6.jpg' %}');
+    /* Adjust background image properties */
+    background-size: cover; /* Cover the entire container */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-position: center;">
         <div class="container">
             <h1 class="heading">{{ job.title }}<br>
                 <small>at <a href="#"> {{ job.company_name }}</a></small>
