@@ -14,7 +14,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto">
-                    <h1 class="heading" style="color:black">All Applicants Applied for the job</h1>
+                    <h1 class="heading" style="color:black">All applicants who applied for the Job</h1>
                 </div>
             </div>
         </div>
@@ -26,13 +26,18 @@
                     <div class="col-lg-6">
                         <div class="box applicant">
                             <h4>{{ applicant.user.get_full_name }}</h4>
-                            <a href="#" data-toggle="modal" data-target="#contact-modal"
-                               class="btn btn-outline-white-secondary btn-sm">
-                                Contact
-                            </a>
+                            <p><strong>Applied position: {{ applicant.job.title }}</strong></p>
+                            <p><strong>Contact email: {{ applicant.user.email }}</strong></p>
                             <p>
                                 <span class="badge badge-info">Applied {{ applicant.created_at.astimezone }}</span>
                             </p>
+                            <div class="d-flex justify-content-between">
+                                <p class="intro"></p>
+                                <div class="image">
+                                    <img src="{% static 'profile.jpg' %}" alt=""
+                                         class="img-fluid rounded-circle">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 {% endfor %}
@@ -77,10 +82,11 @@
                         </div>
                     </div>
                 {% else %}
-                    <h3>That's all right now</h3>
+                    <h3>Thats all.....</h3>
                 {% endif %}
             </div>
         </div>
     </section>
-
+   <section>
+   </section>
 {% endblock %}
